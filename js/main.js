@@ -21,6 +21,63 @@ function loadEnquiry2(){
 		var htmlListArray2 = list2.map(function(t){ return '<option>' + t[0] + '</option>'; }).join('');
 		Logger.log(ws.getRange("A1").getDataRegion().getLastRow());
 		Logger.log(ws.getRange("C1").getDataRegion().getLastRow());
+
+
+	//  Table Content - All Txn
+	   var wsData = bess.getSheetByName("CalculatedData");
+	   var Tlist = wsData.getRange(1, 1,wsData.getRange("A1").getDataRegion().getLastRow(),6).getValues();
+	  Logger.log("Tlist: " + Tlist);
+	  var rNum = wsData.getRange("A1").getDataRegion().getLastRow();
+	  var TArray = [];
+	  
+	  for (let i=1; i<rNum; i++){
+	    if(Tlist[i][4] == ""){
+
+	    } else if ( Tlist[i][1] == "新增倉存" || Tlist[i][1] == "減少倉存" ) {
+	      var TListArray = '<tr>' + '<td>' + (Tlist[i][0]).toLocaleDateString() +
+	          '</td>' + '<td>' + Tlist[i][1] +
+	            '</td>' + '<td>' + Tlist[i][2] +
+	              '</td>' + '<td>' + Tlist[i][3] +
+	                '</td>' + '<td>' + Tlist[i][4] +
+	                  '</td>'  + '<td>' + (Tlist[i][5]).toLocaleDateString() + '</td>' + '</tr>';
+	      TArray.push(TListArray);
+	    }
+	  }
+
+	// Table Content - Summary
+	  var wsData2 = bess.getSheetByName("CalculatedDataPTable");
+	  var Tlist2 = wsData2.getRange(1, 1,wsData2.getRange("A1").getDataRegion().getLastRow(),3).getValues();
+	  Logger.log("Tlist2: " + Tlist2);
+	  var rNum2 = wsData2.getRange("A1").getDataRegion().getLastRow();
+	  var TArray2 = [];
+
+	  for (let i=1; i<rNum2; i++){
+	    if(Tlist2[i][0] == "" || Tlist2[i][0] == "地點" ){
+
+	    } else {
+	      var TListArray2 = '<tr>' + '<td>' + (Tlist2[i][0]) +
+	          '</td>' + '<td>' + Tlist2[i][1] +
+	            '</td>' + '<td>' + Tlist2[i][2] + '</td>' + '</tr>';
+	      TArray2.push(TListArray2);
+	    }
+	  }
+
+
+	  var TArr = TArray.join('');
+	  Logger.log(TArr);
+	  var TArr2 = TArray2.join('');
+	  Logger.log(TArr);
+
+	  var tmp = HtmlService.createTemplateFromFile('enquiry');
+	  tmp.list = htmlListArray;
+	  tmp.list2 = htmlListArray2;
+	  tmp.Tlist = TArr;
+	  tmp.Tlist2 = TArr2;
+
+
+
+	  return tmp.evaluate()
+	  .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 	function init () {
