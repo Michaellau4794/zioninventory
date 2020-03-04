@@ -1,138 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
-
-    <base target="_top">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <?!= include('page-css'); ?>
-
-  </head>
-  <body onload="openCtr(event, 'SummaryCtr','倉存管理系統 - 倉存總結')">
-
-<div class="container" id="MainMenu" weigth="100%">
-<div class="row">
-
-    <blockquote id="firstTitle">倉存管理系統</blockquote>
-    <div class="tab">
-    <button class="waves-effect waves-light btn" onclick="openCtr(event, 'SummaryCtr','倉存管理系統 - 倉存總結')">倉存總結</button>
-    <button class="waves-effect waves-light btn" onclick="openCtr(event, 'AllTxnCtr','倉存管理系統 - 記錄查詢')">記錄查詢</button>
-
-    </div>
-</div>
-</div>
-<hr>
-
-    <div class="container tabctr" id="AllTxnCtr">
-      <div class="row">
-
-
-
-
-
-
-             <div class="col s6">
-             <label for="inp">地點</label>
-             <select id="inp" onchange="FilterFunction()" class="browser-default"  size="1">
-                <option value="" disabled selected>請選擇</option>
-                  <?!= list2; ?>
-             </select>
-
-             </div>
-
-
-             <div class="col s6">
-             <label for="Tapp">物品</label>
-             <select id="Tapp" onchange="FilterFunction()" class="browser-default">
-                <option value="" disabled selected>請選擇</option>
-                  <?!= list; ?>
-             </select>
-
-             </div>
-
-         <br><br><br><br>
-         <button id="RefreshBtn2" class="waves-effect waves-light btn-small indigo darken-3" onclick="CleanTable()"><i class="material-icons left">autorenew</i>重設</button>
-
-
-      </div> <!-- CLOSE ROW -->
-
-
-    <table class="highlight" id="table" table-layout="auto" width="100%">
-        <thead>
-          <tr>
-              <th>申請日期</th>
-              <th>操作</th>
-              <th>地點</th>
-              <th>物品</th>
-              <th>數量</th>
-              <th>處理日期</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <?!= Tlist; ?>
-        </tbody>
-      </table>
-
-
-      <div class="row">
-<h5 align="center"> - End - </h5>
-<br><br><br><br><br><br><br><br>
-
-      </div> <!-- CLOSE ROW -->
-
-    </div> <!-- CLOSE CONTAINER -->
-
-    <div class="container tabctr" id="SummaryCtr">
-
-          <div class="row">
-             <div class="col s6">
-             <label for="inp2">地點</label>
-             <select id="inp2" onchange="FilterFunction2()" class="browser-default"  size="1">
-                <option value="" disabled selected>請選擇</option>
-                  <?!= list2; ?>
-             </select>
-
-             </div>
-
-
-             <div class="col s6">
-             <label for="Tapp2">物品</label>
-             <select id="Tapp2" onchange="FilterFunction2()" class="browser-default">
-                <option value="" disabled selected>請選擇</option>
-                  <?!= list; ?>
-             </select>
-
-             </div>
-
-         <br><br><br><br>
-         <button id="RefreshBtn3" class="waves-effect waves-light btn-small indigo darken-3" onclick="CleanTable2()"><i class="material-icons left">autorenew</i>重設</button>
-
-
-      </div> <!-- CLOSE ROW -->
-
-
-       <table class="highlight" id="table2" table-layout="auto" width="100%">
-        <thead>
-          <tr>
-              <th>地點</th>
-              <th>物品</th>
-              <th>剩餘數量</th>
-          </tr>
-        </thead>
-        <tbody>
-           <?!= Tlist2; ?>
-        </tbody>
-      </table>
-
-<h5 align="center"> - End - </h5>
-<br><br><br><br><br><br><br><br>
-    </div> <!-- CLOSE CONTAINER -->
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <?!= include('page-js'); ?>
-  </body>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Google Sheets CMS</title>
+	<link rel="stylesheet" href="css/normalize.min.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<header>
+		<img src="img/google-sheets-logo.png" alt="logo for google sheets">
+		<h1>Generic Blog</h1>
+	</header>
+	<main>
+		<div class="information">
+			This is an example of a frontend for a blog CMS built using Google Sheets, Google Forms and Google Apps Script which was published as a <a href="https://medium.com/p/c2eab3fb0b2b">Medium article</a>. The blog is designed as a single page application with pagination and category filtering.
+		</div>
+		<nav id="filter"></nav>
+		<div id="container"></div>
+		<div id="notice"></div>
+	</main>
+	<footer>
+		<p>These blog posts are from a Google Sheets backend</p>
+		<a href="https://medium.com/p/c2eab3fb0b2b">Read the article on Medium</a>
+	</footer>
+	<script src="js/main.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded',loadEnquiry2);
+	</script>
+</body>
 </html>
