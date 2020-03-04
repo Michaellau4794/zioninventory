@@ -29,7 +29,7 @@ function loadEnquiry2(){
 	  Logger.log("Tlist: " + Tlist);
 	  var rNum = wsData.getRange("A1").getDataRegion().getLastRow();
 	  var TArray = [];
-	  
+
 	  for (let i=1; i<rNum; i++){
 	    if(Tlist[i][4] == ""){
 
@@ -74,7 +74,7 @@ function loadEnquiry2(){
 	  tmp.Tlist = TArr;
 	  tmp.Tlist2 = TArr2;
 
-
+console.log(tmp);
 
 	  return tmp.evaluate()
 	  .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
